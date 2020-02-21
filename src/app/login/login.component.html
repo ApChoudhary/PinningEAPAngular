@@ -2,7 +2,7 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="container">
         <div>
-            <label for="username">Username</label> :
+            <label for="username">UserID</label> :
             <input type="text" formControlName="username" placeholder="Enter Username" name="uname">
             <div *ngIf="f.username.errors">
                 <div *ngIf="f.username.errors.required">Username is required</div>
