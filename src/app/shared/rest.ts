@@ -33,4 +33,27 @@ export class RestService {
                 return user;
             }));
     }
+
+    dbSchema() {
+        return this.http.get<any>('http://127.0.0.1:5000/dbdata')
+            .pipe(map(user => {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes               
+                return user;
+            }));
+    }
+
+    insertIntoDB() {
+        var body = {
+            "ID": "2",
+            "Service_Name": "Pinning",
+            "Hit": "0",
+            "Source": "UI",
+            "Seq_No": "2"
+        }
+        return this.http.post<any>('http://127.0.0.1:5000/insertIntoDB', body)
+            .pipe(map(user => {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes               
+                return user;
+            }));
+    }
 }

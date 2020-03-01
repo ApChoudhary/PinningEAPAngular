@@ -8,12 +8,16 @@ import { LandingComponent } from './landing/landing.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SupportCasesComponent } from './support-cases/support-cases.component';
+import { DbTestComponent } from './db-test/db-test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LandingComponent
+    LandingComponent,
+    SupportCasesComponent,
+    DbTestComponent
   ],
   imports: [
     BrowserModule,
