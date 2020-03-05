@@ -1,4 +1,29 @@
-<p>{{apiResponse}}</p>
-<div>
+<!-- <p>{{apiResponse}}</p> -->
+<!-- <div>
     <a href="/dbschema">Schema</a>
+</div> -->
+<!-- <app-db-test [chartShow] = "chartShow"></app-db-test> -->
+<!-- <button (click) = toggle()>Show Chart</button> -->
+<div class="row">
+    <div class="col">
+        <div ngbDropdown class="d-inline-block">
+            <button style = "width: 500px;" class="btn btn-outline-primary" id="dropdownMenuButton" ngbDropdownToggle>Select Chart</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                <button ngbDropdownItem (click)=toggleService()>Line Chart</button>
+                <!-- <button ngbDropdownItem>Another Action</button>
+      <button ngbDropdownItem>Something else here</button> -->
+            </div>
+        </div>
+    </div>
+    <div class="col" *ngIf="serviceDropdownShow">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Select Service</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                <button ngbDropdownItem (click)="toggle('pinning')">Pinning</button>
+                <button ngbDropdownItem (click)="toggle('convert')">Convert</button>
+                <button ngbDropdownItem (click)="toggle('cass')">Cass</button>
+            </div>
+        </div>
+    </div>
 </div>
+<app-db-test *ngIf="barChartShow" ></app-db-test>
