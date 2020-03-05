@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { RestService } from "src/app/shared/rest";
 import { Chart } from 'chart.js';
 
@@ -7,7 +7,7 @@ import { Chart } from 'chart.js';
   templateUrl: './db-test.component.html',
   styleUrls: ['./db-test.component.scss']
 })
-export class DbTestComponent implements OnInit {
+export class DbTestComponent {
 
   chart = [];
   apiResponse: any;
@@ -15,50 +15,67 @@ export class DbTestComponent implements OnInit {
     private restService: RestService
   ) { }
 
-  ngOnInit(): void {
-    this.restService.dbSchema().subscribe((res) => {
-      this.apiResponse = res
-      // console.log(res)
+  showChart(res) {
+    // this.apiResponse = res
+    console.log(res)
 
-      let hits = res.map(res => res[6])
-      let newrecord = res.map(res => res[7])
-      let date = res.map(res => res[1])
+    let hits = res.map(res => res[6])
+    let newrecord = res.map(res => res[7])
+    let source = res.map(res => res[5])
 
-      this.chart = new Chart('canvas', {
-        type: 'line',
-        data: {
-          labels: date,
-          datasets: [
-            { 
-              data: hits,
-              borderColor: "#3cba9f",
-              fill: false
-            },
-            { 
-              data: newrecord,
-              borderColor: "#ffcc00",
-              fill: false
-            },
-          ]
-        },
-        options: {
-          legend: {
-            display: false
+    this.chart = new Chart('canvas', {
+      type: 'horizontalBar',
+      data: {
+        labels: source,
+        datasets: [
+          { 
+            data: hits,
+            borderColor: "#3cba9f",
+            fill: false,
+            backgroundColor: "#3cba9f",
+            label: 'hits',
+            barPercentage: 0.5,
+            barThickness: 60
           },
-          scales: {
-            xAxes: [{
-              display: true
-            }],
-            yAxes: [{
-              display: true
-            }],
-          }
+          { 
+            data: newrecord,
+            borderColor: "#ffcc00",
+            fill: false,
+            backgroundColor: "#ffcc00",
+            label: 'new',
+            barThickness: 60,
+          },
+        ]
+      },
+      options: {
+        legend: {
+          display: true,
+          labels: {
+            fontColor: 'black'
+          },
+          barPercentage: 0.1,
+          categoryPercentage: 0.5
+        },
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }],
         }
-      });
+      }
     });
   }
 
   onClick() {
     this.restService.insertIntoDB().subscribe()
+  }
+
+  @HostBinding('class.is-open')
+  isOpen = false;
+
+  toggle() {
+    this.isOpen = !this.isOpen;
   }
 }

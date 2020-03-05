@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { RestService } from "src/app/shared/rest";
+import { DbTestComponent } from '../db-test/db-test.component';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit {
 
+export class LandingComponent implements OnInit {
   apiResponse: any;
   constructor(
-    private restService: RestService
+    private restService: RestService,
+    private DbTestComponent: DbTestComponent
   ) { }
 
   ngOnInit(): void {
@@ -19,4 +21,39 @@ export class LandingComponent implements OnInit {
     });
   }
 
+  // @Input() chartShow: DbTestComponent;
+
+  // @HostListener('click')
+  // click() {
+  //   this.chartShow.toggle();
+  // }
+
+  service = {
+    "service": ""
+  }
+
+  renderChart(service) {
+    this.restService.getChartData(service).subscribe((res) => {
+      this.DbTestComponent.showChart(res)
+    })
+  }
+
+  barChartShow = true;
+  toggle(button: string) {
+    console.log(button.toString());
+    // this.barChartShow = !this.barChartShow;
+    if(this.barChartShow==true)
+    {
+      this.service.service = button;
+      this.renderChart(this.service);
+    }
+  }
+
+  serviceDropdownShow = false;
+  toggleService() {
+    this.serviceDropdownShow = !this.serviceDropdownShow;
+    if(this.serviceDropdownShow == false && this.barChartShow == true) {
+      this.toggle("pinning");
+    }
+  }
 }

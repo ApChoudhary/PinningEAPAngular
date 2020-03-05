@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SupportCasesComponent } from './support-cases/support-cases.component';
 import { DbTestComponent } from './db-test/db-test.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import { DbTestComponent } from './db-test/db-test.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, ReactiveFormsModule,HttpClientModule
+    FormsModule, ReactiveFormsModule,HttpClientModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [DbTestComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

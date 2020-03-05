@@ -8,7 +8,6 @@ import { DbTestComponent } from './db-test/db-test.component';
 
 const routes: Routes = [
   { path: 'landing', component: LandingComponent },
-  { path: 'support', component: SupportCasesComponent },
   { path: 'dbschema', component: DbTestComponent},
   { path: '', component: LoginComponent },
 ];
