@@ -4,6 +4,7 @@
 </div> -->
 <!-- <app-db-test [chartShow] = "chartShow"></app-db-test> -->
 <!-- <button (click) = toggle()>Show Chart</button> -->
+
 <div class="row">
     <div class="col">
         <div ngbDropdown class="d-inline-block">
@@ -24,6 +25,11 @@
                 <button ngbDropdownItem (click)="toggle('cass')">Cass</button>
             </div>
         </div>
+    </div>
+    <div class="col">
+        <button style = "width: 100px;" class="btn btn-outline-primary" (click)="goToPage('request')">
+            <span>New Request</span>
+        </button>
     </div>
 </div>
 <app-db-test *ngIf="barChartShow" ></app-db-test>

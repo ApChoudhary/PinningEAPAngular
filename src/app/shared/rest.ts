@@ -34,6 +34,18 @@ export class RestService {
             }));
     }
 
+    request() {
+        var header = {
+            headers: new HttpHeaders()
+                .set('Authorization', `JWT ${localStorage.getItem('accesstoken')}`)
+        }
+        return this.http.get<any>('http://127.0.0.1:5000/',header)
+            .pipe(map(user => {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes               
+                return user;
+            }));
+    }
+
     getChartData(service) {
         return this.http.post<any>('http://127.0.0.1:5000/dbdata', service)
             .pipe(map(user => {
@@ -51,6 +63,23 @@ export class RestService {
             "Seq_No": "2"
         }
         return this.http.post<any>('http://127.0.0.1:5000/insertIntoDB', body)
+            .pipe(map(user => {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes               
+                return user;
+            }));
+    }
+    insertRequestIntoDB(service,request,requestinfo) {
+        var body = {
+            "SERVICE": service,
+            "REQUEST_TYPE": request,
+            "REASON": requestinfo.reason.value,
+            "DESCRIPTION": requestinfo.description.value,
+            "REQUESTOR_NAME": requestinfo.requestorName.value,
+            "CLIENT_NAME": requestinfo.clientName.value,
+            "REQUESTOR_EMAIL": requestinfo.requestorEmail.value,
+            "SEND_COPY_TO": requestinfo.sendCopyTo.value
+        }
+        return this.http.post<any>('http://127.0.0.1:5000/inserRequestIntoDB', body)
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes               
                 return user;

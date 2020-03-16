@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { RestService } from "src/app/shared/rest";
 import { DbTestComponent } from '../db-test/db-test.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -12,7 +13,8 @@ export class LandingComponent implements OnInit {
   apiResponse: any;
   constructor(
     private restService: RestService,
-    private DbTestComponent: DbTestComponent
+    private DbTestComponent: DbTestComponent,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -55,5 +57,8 @@ export class LandingComponent implements OnInit {
     if(this.serviceDropdownShow == false && this.barChartShow == true) {
       this.toggle("pinning");
     }
+  }
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
   }
 }

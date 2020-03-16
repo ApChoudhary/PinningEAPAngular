@@ -1,0 +1,131 @@
+<h2 align="center">Request page</h2>
+<div class="my_content_container">
+    <a href='/landing'>Go to Home</a>
+</div>
+<form [formGroup] = "submitRequestForm" >  
+<div class="container">
+<div class="row">
+    <div class="col">
+        <div ngbDropdown class="d-inline-block">
+            <label for="Service" >Service</label>
+        </div>
+    </div>
+    <div class="col">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle >{{selectedService}}</button>
+            <div  class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic1" [(ngModel)]="selectedService" ngDefaultControl [ngModelOptions]="{standalone: true}">
+                <button  class="dropdown-item" *ngFor="let service of services" (click)="ChangeService(service)" >{{service}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div ngbDropdown class="d-inline-block">
+            <label for="RequestType">Request Type</label>
+        </div>
+    </div>
+    <div class="col">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>{{selectedRequest}}</button>
+            <div  class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownBasic1"  [(ngModel)]="selectedRequest" ngDefaultControl [ngModelOptions]="{standalone: true}">
+                <button  class="dropdown-item" *ngFor="let request of requestTypes" (click)="ChangeRequest(request)">{{request}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="Reason">Reason</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">    
+            <input type="text" class="form-control" id="reason" formControlName="reason">
+            <div *ngIf="f.reason.errors">
+                <div *ngIf="f.reason.errors.required">Reason is required</div>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="row">
+    <div class="col">   
+        <div class="form-group">
+            <label for="Description">Description</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <input type="text" class="form-control" id="description" formControlName="description">
+            <div *ngIf="f.description.errors">
+                <div *ngIf="f.description.errors.required">description is required</div>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="row">
+    <div class="col">   
+        <div class="form-group">
+            <label for="RequestorName">Requestor Name</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <input type="text" class="form-control" id="requestorName" formControlName="requestorName">
+            <div *ngIf="f.requestorName.errors">
+                <div *ngIf="f.requestorName.errors.required">Requestor Name is required</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">   
+        <div class="form-group">
+            <label for="RequestorEmail">Requestor Email</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <input type="email" class="form-control" id="requestorEmail" formControlName="requestorEmail">
+            <div *ngIf="f.requestorEmail.errors">
+                <div *ngIf="f.requestorEmail.errors.required">Email is required</div>
+                <div *ngIf="f.requestorEmail.errors.email">Email must be a valid email address</div>
+            </div>    
+        </div>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col">   
+        <div class="form-group">
+            <label for="ClientName">Client Name</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <input type="text" class="form-control" id="clientName" formControlName="clientName">
+            <div *ngIf="f.clientName.errors">
+                <div *ngIf="f.clientName.errors.required">Client Name is required</div>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="row">
+    <div class="col">   
+        <div class="form-group">
+            <label for="SendCopyTo">Send Copy to</label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <input type="text" class="form-control" id="sendCopyTo" formControlName="sendCopyTo">
+        </div>
+    </div>
+</div> 
+<button type="submit" (click)="onSubmit()" style="margin-left: 50%"  class="btn btn-primary"  >Submit</button>
+</div>
+</form>
+
+<!-- 
+ng-click="submitData(choice)"  -->

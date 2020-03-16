@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
+import { RequestComponent } from './request/request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,6 +18,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     LoginComponent,
     LandingComponent,
+    RequestComponent,
     SupportCasesComponent,
     DbTestComponent
   ],
