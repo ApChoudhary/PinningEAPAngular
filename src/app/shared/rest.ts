@@ -69,6 +69,11 @@ export class RestService {
             }));
     }
     insertRequestIntoDB(service,request,requestinfo) {
+        var headers = {
+            headers: new HttpHeaders()
+                .set('Authorization', `JWT ${localStorage.getItem('accesstoken')}`)
+        }
+        // let options = new RequestOptions({ headers: headers });
         var body = {
             "SERVICE": service,
             "REQUEST_TYPE": request,
@@ -79,10 +84,10 @@ export class RestService {
             "REQUESTOR_EMAIL": requestinfo.requestorEmail.value,
             "SEND_COPY_TO": requestinfo.sendCopyTo.value
         }
-        return this.http.post<any>('http://127.0.0.1:5000/inserRequestIntoDB', body)
+        return this.http.post<any>('http://127.0.0.1:5000/insertRequestIntoDB', body,{headers:{'Authorization':`JWT ${localStorage.getItem('accesstoken')}`}})
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes               
-                return user;
+                return true;
             }));
     }
 }

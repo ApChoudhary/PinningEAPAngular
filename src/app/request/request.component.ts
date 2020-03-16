@@ -54,8 +54,8 @@ export class RequestComponent implements OnInit {
 
   private formSubmitAttempt: boolean;
  
-    onSubmit() {
-      debugger;
+    onSubmit() 
+    {
       if (!this.submitRequestForm.valid) {
         alert("The form is invalid");   
         this.formSubmitAttempt = false;
@@ -65,7 +65,6 @@ export class RequestComponent implements OnInit {
       alert("The form was submitted");
       this.restService.insertRequestIntoDB(this.selectedService,this.selectedRequest,this.f).subscribe()
       this.submitRequestForm.reset();
-
       }
     }
 }
